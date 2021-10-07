@@ -11,7 +11,7 @@ const todos = [
 const todosContainer = document.querySelector('.todos__list');
 
 const renderTodo = (taskName) => {
-  return `
+  const todoMarkup = `
     <li class="todo-item">
       <span class="todo-item__text">${taskName}</span>
       <button class="todo-item__edit"></button>
@@ -19,6 +19,8 @@ const renderTodo = (taskName) => {
       <button class="todo-item__del"></button>
     </li>
   `;
+
+  todosContainer.insertAdjacentHTML('beforeend', todoMarkup);
 };
 
-todosContainer.innerHTML = todos.map(renderTodo).join('');
+todos.forEach(renderTodo);
