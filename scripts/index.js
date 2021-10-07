@@ -9,20 +9,14 @@ const todos = [
 ];
 
 const todosContainer = document.querySelector('.todos__list');
+const todoTemplate = document.querySelector('#todo-item-template').content;
 
 const renderTodo = (taskName) => {
-  const todoMarkup = `
-    <li class="todo-item">
-      <span class="todo-item__text">${taskName}</span>
-      <button class="todo-item__edit"></button>
-      <button class="todo-item__copy"></button>
-      <button class="todo-item__del"></button>
-    </li>
-  `;
+  const todoElement = todoTemplate.cloneNode(true);
+  const todoTextElement = todoElement.querySelector('.todo-item__text');
+  todoTextElement.textContent = taskName;
 
-  todosContainer.insertAdjacentHTML('beforeend', todoMarkup);
+  todosContainer.append(todoElement);
 };
 
 todos.forEach(renderTodo);
-
-todosContainer.innerHTML += `<img src="" alt="oops" onerror="alert('You are hacked');" />`;
