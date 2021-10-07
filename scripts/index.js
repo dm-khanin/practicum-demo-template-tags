@@ -20,7 +20,33 @@ const renderTodo = (taskName) => {
   const todoDeleteBtn = todoElement.querySelector('.todo-item__del');
   todoDeleteBtn.addEventListener('click', (event) => {
     event.target.closest('.todo-item').remove();
-  })
+  });
+
+  const todoEditBtn = todoElement.querySelector('.todo-item__edit');
+  todoEditBtn.addEventListener('click', (event) => {
+    const input = addTodoForm.querySelector('.todo-form__input');
+    input.value = taskName;
+
+    const submitBtn = addTodoForm.querySelector('.todo-form__submit-btn');
+    submitBtn.textContent = 'Изменить';
+    addTodoForm.removeEventListener('submit', addTodo);
+
+    const editTodo = (e) => {
+      e.preventDefault();
+
+      event.target.closest('.todo-item')
+        .querySelector('.todo-item__text')
+        .textContent = input.value;
+
+      input.value = '';
+      submitBtn.textContent = 'Добавить';
+
+      addTodoForm.removeEventListener('submit', editTodo);
+      addTodoForm.addEventListener('submit', addTodo);
+    };
+
+    addTodoForm.addEventListener('submit', editTodo);
+  });
 
   todosContainer.append(todoElement);
 };
