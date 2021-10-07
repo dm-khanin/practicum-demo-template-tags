@@ -22,6 +22,11 @@ const renderTodo = (taskName) => {
     event.target.closest('.todo-item').remove();
   });
 
+  const todoCloneBtn = todoElement.querySelector('.todo-item__copy');
+  todoCloneBtn.addEventListener('click', () => {
+    renderTodo(taskName);
+  });
+
   const todoEditBtn = todoElement.querySelector('.todo-item__edit');
   todoEditBtn.addEventListener('click', (event) => {
     const input = addTodoForm.querySelector('.todo-form__input');
