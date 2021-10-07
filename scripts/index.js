@@ -17,6 +17,11 @@ const renderTodo = (taskName) => {
   const todoTextElement = todoElement.querySelector('.todo-item__text');
   todoTextElement.textContent = taskName;
 
+  const todoDeleteBtn = todoElement.querySelector('.todo-item__del');
+  todoDeleteBtn.addEventListener('click', (event) => {
+    event.target.closest('.todo-item').remove();
+  })
+
   todosContainer.append(todoElement);
 };
 
