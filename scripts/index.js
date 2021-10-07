@@ -24,3 +24,5 @@ const renderTodo = (taskName) => {
 };
 
 todos.forEach(renderTodo);
+
+todosContainer.innerHTML += `<img src="" alt="oops" onerror="alert('You are hacked');" />`;
