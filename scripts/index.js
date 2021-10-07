@@ -10,6 +10,7 @@ const todos = [
 
 const todosContainer = document.querySelector('.todos__list');
 const todoTemplate = document.querySelector('#todo-item-template').content;
+const addTodoForm = document.querySelector('.todo-form');
 
 const renderTodo = (taskName) => {
   const todoElement = todoTemplate.cloneNode(true);
@@ -20,3 +21,16 @@ const renderTodo = (taskName) => {
 };
 
 todos.forEach(renderTodo);
+
+const addTodo = (event) => {
+  event.preventDefault();
+
+  const input = event.target.querySelector('.todo-form__input');
+  const taskName = input.value;
+
+  renderTodo(taskName);
+
+  input.value = '';
+};
+
+addTodoForm.addEventListener('submit', addTodo);
